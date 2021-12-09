@@ -11,3 +11,6 @@ https://tools.analog.com/en/simdds/?part=AD9833&fin=25M&mult=1&ftw=83E5D&rso=111
 - AD9833 Datasheet:
 
 https://www.analog.com/media/en/technical-documentation/data-sheets/AD9833.pdf
+- STM32F446xx Reference Manual:
+
+https://www.st.com/resource/en/reference_manual/dm00135183-stm32f446xx-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf
