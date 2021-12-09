@@ -1,0 +1,1581 @@
+[
+    {
+        "id": "68ed32eb0b68066e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1b0bc6f0d60c2bdc",
+        "type": "ui_text_input",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "label": "Order",
+        "tooltip": "",
+        "group": "10d9bc6013909aec",
+        "order": 1,
+        "width": 18,
+        "height": 1,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "1b0bf9631e4e13f9",
+                "e520d18baf23b292"
+            ]
+        ]
+    },
+    {
+        "id": "344a27d5a83963c6",
+        "type": "serial in",
+        "z": "68ed32eb0b68066e",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "bb6f8cb07f1210ae",
+                "1bc35dfa358d15ec"
+            ]
+        ]
+    },
+    {
+        "id": "1b0bf9631e4e13f9",
+        "type": "serial out",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "serial": "",
+        "x": 330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "bb6f8cb07f1210ae",
+        "type": "ui_text",
+        "z": "68ed32eb0b68066e",
+        "group": "10d9bc6013909aec",
+        "order": 2,
+        "width": 18,
+        "height": 1,
+        "name": "",
+        "label": "Answer",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 320,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e520d18baf23b292",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Clear Input",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "5893cf2abfb71d71"
+            ]
+        ]
+    },
+    {
+        "id": "5893cf2abfb71d71",
+        "type": "delay",
+        "z": "68ed32eb0b68066e",
+        "name": "Delay",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "1b0bc6f0d60c2bdc"
+            ]
+        ]
+    },
+    {
+        "id": "1bc35dfa358d15ec",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Clear Input",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "1c95fed9e5a0f4ec"
+            ]
+        ]
+    },
+    {
+        "id": "1c95fed9e5a0f4ec",
+        "type": "delay",
+        "z": "68ed32eb0b68066e",
+        "name": "Delay",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 260,
+        "wires": [
+            [
+                "bb6f8cb07f1210ae"
+            ]
+        ]
+    },
+    {
+        "id": "ce53b9cdad45c7c4",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 3,
+        "width": 9,
+        "height": 1,
+        "passthru": false,
+        "label": "{{msg.controlMode}}",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+CNTL",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 330,
+        "y": 440,
+        "wires": [
+            [
+                "d4818dd5a8159d01"
+            ]
+        ]
+    },
+    {
+        "id": "d4818dd5a8159d01",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "Change Button Color",
+        "func": "if (msg.topic === \"#FFF984\")\n{\n    msg.background = \"#FFF41F\";\n    msg.controlMode = \" Chanel 1 On\";\n    msg.icon = \"fa-toggle-on\";\n}\nelse\n{\n    msg.background = \"#FFF984\";\n    msg.controlMode = \" Chanel 1 Off\";\n    msg.icon =\"fa-toggle-off\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 520,
+        "wires": [
+            [
+                "ce53b9cdad45c7c4"
+            ]
+        ]
+    },
+    {
+        "id": "2e53bc5e48c1f85e",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Button",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#FFF41F",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "controlMode",
+                "pt": "msg",
+                "to": "Chanel 1 On",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-toggle-on",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 380,
+        "wires": [
+            [
+                "ce53b9cdad45c7c4"
+            ]
+        ]
+    },
+    {
+        "id": "65f9804de9da1a94",
+        "type": "inject",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 380,
+        "wires": [
+            [
+                "2e53bc5e48c1f85e"
+            ]
+        ]
+    },
+    {
+        "id": "c397f5a1842d9be3",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 4,
+        "width": 9,
+        "height": 1,
+        "passthru": false,
+        "label": "{{msg.controlMode}}",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+CNTL",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 270,
+        "y": 1100,
+        "wires": [
+            [
+                "4663ef9b5119ad9e"
+            ]
+        ]
+    },
+    {
+        "id": "4663ef9b5119ad9e",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "Change Button Color",
+        "func": "if (msg.topic === \"#B4F1FF\")\n{\n    msg.background = \"#339BFF\";\n    msg.controlMode = \" Chanel 2 On\";\n    msg.icon = \"fa-toggle-on\";\n}\nelse\n{\n    msg.background = \"#B4F1FF\";\n    msg.controlMode = \" Chanel 2 Off\";\n    msg.icon =\"fa-toggle-off\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1180,
+        "wires": [
+            [
+                "c397f5a1842d9be3"
+            ]
+        ]
+    },
+    {
+        "id": "bbe1c80d09189678",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Button",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#B4F1FF",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "controlMode",
+                "pt": "msg",
+                "to": "Chanel 2 Off",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-toggle-off",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 1040,
+        "wires": [
+            [
+                "c397f5a1842d9be3"
+            ]
+        ]
+    },
+    {
+        "id": "7ff6573079e7f856",
+        "type": "inject",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1040,
+        "wires": [
+            [
+                "bbe1c80d09189678"
+            ]
+        ]
+    },
+    {
+        "id": "4d2b01fa2946b5a6",
+        "type": "comment",
+        "z": "68ed32eb0b68066e",
+        "name": "Serial Com",
+        "info": "",
+        "x": 140,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "429d8f51aaf45190",
+        "type": "comment",
+        "z": "68ed32eb0b68066e",
+        "name": "Channel 1",
+        "info": "",
+        "x": 140,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "29b17dfd581ce968",
+        "type": "comment",
+        "z": "68ed32eb0b68066e",
+        "name": "Channel 2",
+        "info": "",
+        "x": 100,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "192a5a8d8a7e5c4e",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Sine",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+SIN1",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 470,
+        "y": 600,
+        "wires": [
+            [
+                "b968ac99d304f97f",
+                "9baa37c56a636156"
+            ]
+        ]
+    },
+    {
+        "id": "b968ac99d304f97f",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#FFF41F\";\nmsg.icon =\"fa-check-square\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 600,
+        "wires": [
+            [
+                "192a5a8d8a7e5c4e"
+            ]
+        ]
+    },
+    {
+        "id": "1bdddb6b9fd180d3",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Shape 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#FFF41F",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-check-square ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 580,
+        "wires": [
+            [
+                "192a5a8d8a7e5c4e"
+            ]
+        ]
+    },
+    {
+        "id": "d0b8fd1f4aa4ae70",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Triangular",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+TRI1",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 480,
+        "y": 700,
+        "wires": [
+            [
+                "261d06c96c8e3606",
+                "b1e33340ef660bae"
+            ]
+        ]
+    },
+    {
+        "id": "261d06c96c8e3606",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#FFF41F\";\nmsg.icon =\"fa-check-square\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 700,
+        "wires": [
+            [
+                "d0b8fd1f4aa4ae70"
+            ]
+        ]
+    },
+    {
+        "id": "ea3f0d26b1e1f01c",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Shape 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#FFF984",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-square-o",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 680,
+        "wires": [
+            [
+                "d0b8fd1f4aa4ae70"
+            ]
+        ]
+    },
+    {
+        "id": "34b8a189846d3532",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Square",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+SQR1",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 480,
+        "y": 800,
+        "wires": [
+            [
+                "e350fea267e22dc0",
+                "c48b4f8f6673f283"
+            ]
+        ]
+    },
+    {
+        "id": "e350fea267e22dc0",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#FFF41F\";\nmsg.icon =\"fa-check-square\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 800,
+        "wires": [
+            [
+                "34b8a189846d3532"
+            ]
+        ]
+    },
+    {
+        "id": "2724c7381e2af0c1",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Shape 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#FFF984",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-square-o ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 800,
+        "wires": [
+            [
+                "34b8a189846d3532"
+            ]
+        ]
+    },
+    {
+        "id": "95884d1165cb7c83",
+        "type": "inject",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 680,
+        "wires": [
+            [
+                "1bdddb6b9fd180d3",
+                "ea3f0d26b1e1f01c",
+                "2724c7381e2af0c1"
+            ]
+        ]
+    },
+    {
+        "id": "9baa37c56a636156",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#FFF984\";\nmsg.icon =\"fa-square-o\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 560,
+        "wires": [
+            [
+                "e433f49a5fad3af7"
+            ]
+        ]
+    },
+    {
+        "id": "e433f49a5fad3af7",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "SineOut1",
+        "mode": "link",
+        "links": [
+            "0fb3d585e466f23d",
+            "5ccb61f4f09e77b2"
+        ],
+        "x": 735,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "5ccb61f4f09e77b2",
+        "type": "link in",
+        "z": "68ed32eb0b68066e",
+        "name": "TriIn1",
+        "links": [
+            "53c61ed5eeacd35d",
+            "e433f49a5fad3af7"
+        ],
+        "x": 255,
+        "y": 720,
+        "wires": [
+            [
+                "d0b8fd1f4aa4ae70"
+            ]
+        ]
+    },
+    {
+        "id": "fdc45291d40edf91",
+        "type": "link in",
+        "z": "68ed32eb0b68066e",
+        "name": "SineIn1",
+        "links": [
+            "53c61ed5eeacd35d",
+            "de341d5d5b5ff3b9"
+        ],
+        "x": 255,
+        "y": 620,
+        "wires": [
+            [
+                "192a5a8d8a7e5c4e"
+            ]
+        ]
+    },
+    {
+        "id": "b1e33340ef660bae",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#FFF984\";\nmsg.icon =\"fa-square-o\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 660,
+        "wires": [
+            [
+                "de341d5d5b5ff3b9"
+            ]
+        ]
+    },
+    {
+        "id": "de341d5d5b5ff3b9",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "TriOut1",
+        "mode": "link",
+        "links": [
+            "0fb3d585e466f23d",
+            "fdc45291d40edf91"
+        ],
+        "x": 735,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c48b4f8f6673f283",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#FFF984\";\nmsg.icon =\"fa-square-o\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 760,
+        "wires": [
+            [
+                "53c61ed5eeacd35d"
+            ]
+        ]
+    },
+    {
+        "id": "53c61ed5eeacd35d",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "SqrOut1",
+        "mode": "link",
+        "links": [
+            "5ccb61f4f09e77b2",
+            "fdc45291d40edf91"
+        ],
+        "x": 735,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "0fb3d585e466f23d",
+        "type": "link in",
+        "z": "68ed32eb0b68066e",
+        "name": "SqrIn1",
+        "links": [
+            "de341d5d5b5ff3b9",
+            "e433f49a5fad3af7"
+        ],
+        "x": 255,
+        "y": 840,
+        "wires": [
+            [
+                "34b8a189846d3532"
+            ]
+        ]
+    },
+    {
+        "id": "9a2d6c684b016623",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 8,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Sine",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+SIN2",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 470,
+        "y": 1260,
+        "wires": [
+            [
+                "0567d45df78dbe08",
+                "ec6d296a2098e04b"
+            ]
+        ]
+    },
+    {
+        "id": "0567d45df78dbe08",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#339BFF\";\nmsg.icon =\"fa-check-square\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 1260,
+        "wires": [
+            [
+                "9a2d6c684b016623"
+            ]
+        ]
+    },
+    {
+        "id": "d1d4173ac201e714",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Shape 2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#339BFF",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-check-square ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 1240,
+        "wires": [
+            [
+                "9a2d6c684b016623"
+            ]
+        ]
+    },
+    {
+        "id": "e644c97305c71523",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 9,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Triangular",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+TRI2",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 480,
+        "y": 1360,
+        "wires": [
+            [
+                "64c6e729bc072593",
+                "99f1b812b8a92ecd"
+            ]
+        ]
+    },
+    {
+        "id": "64c6e729bc072593",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#339BFF\";\nmsg.icon =\"fa-check-square\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 1360,
+        "wires": [
+            [
+                "e644c97305c71523"
+            ]
+        ]
+    },
+    {
+        "id": "a7e2bef642d662c5",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Shape 2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#B4F1FF",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-square-o",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 1340,
+        "wires": [
+            [
+                "e644c97305c71523"
+            ]
+        ]
+    },
+    {
+        "id": "fb111a48ba93a50e",
+        "type": "ui_button",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "group": "10d9bc6013909aec",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Square",
+        "tooltip": "",
+        "color": "Black",
+        "bgcolor": "{{msg.background}} ",
+        "className": "",
+        "icon": "{{msg.icon}}",
+        "payload": "AT+SQR2",
+        "payloadType": "str",
+        "topic": "background",
+        "topicType": "msg",
+        "x": 480,
+        "y": 1460,
+        "wires": [
+            [
+                "05a545c01b2ad3c2",
+                "cdb07f02fcde934a"
+            ]
+        ]
+    },
+    {
+        "id": "05a545c01b2ad3c2",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#339BFF\";\nmsg.icon =\"fa-check-square\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 1460,
+        "wires": [
+            [
+                "fb111a48ba93a50e"
+            ]
+        ]
+    },
+    {
+        "id": "3fbcb4a98c345837",
+        "type": "change",
+        "z": "68ed32eb0b68066e",
+        "name": "Set Shape 2",
+        "rules": [
+            {
+                "t": "set",
+                "p": "background",
+                "pt": "msg",
+                "to": "#B4F1FF",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "icon",
+                "pt": "msg",
+                "to": "fa-square-o ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 1460,
+        "wires": [
+            [
+                "fb111a48ba93a50e"
+            ]
+        ]
+    },
+    {
+        "id": "605dcd953289588f",
+        "type": "inject",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 1340,
+        "wires": [
+            [
+                "d1d4173ac201e714",
+                "a7e2bef642d662c5",
+                "3fbcb4a98c345837"
+            ]
+        ]
+    },
+    {
+        "id": "ec6d296a2098e04b",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#B4F1FF\";\nmsg.icon =\"fa-square-o\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 1220,
+        "wires": [
+            [
+                "b18e0bc5f6cdd065"
+            ]
+        ]
+    },
+    {
+        "id": "b18e0bc5f6cdd065",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "SineOut2",
+        "mode": "link",
+        "links": [
+            "5936296ebc61204e",
+            "957d81cd3e935953"
+        ],
+        "x": 735,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "5936296ebc61204e",
+        "type": "link in",
+        "z": "68ed32eb0b68066e",
+        "name": "TriIn2",
+        "links": [
+            "b18e0bc5f6cdd065",
+            "f46885d693a57981"
+        ],
+        "x": 255,
+        "y": 1380,
+        "wires": [
+            [
+                "e644c97305c71523"
+            ]
+        ]
+    },
+    {
+        "id": "3bea6a0143dadde5",
+        "type": "link in",
+        "z": "68ed32eb0b68066e",
+        "name": "SineIn2",
+        "links": [
+            "4b02af929ffead6c",
+            "f46885d693a57981"
+        ],
+        "x": 255,
+        "y": 1280,
+        "wires": [
+            [
+                "9a2d6c684b016623"
+            ]
+        ]
+    },
+    {
+        "id": "99f1b812b8a92ecd",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#B4F1FF\";\nmsg.icon =\"fa-square-o\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 1320,
+        "wires": [
+            [
+                "4b02af929ffead6c"
+            ]
+        ]
+    },
+    {
+        "id": "4b02af929ffead6c",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "TriOut2",
+        "mode": "link",
+        "links": [
+            "3bea6a0143dadde5",
+            "957d81cd3e935953"
+        ],
+        "x": 735,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "cdb07f02fcde934a",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.background = \"#B4F1FF\";\nmsg.icon =\"fa-square-o\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 1420,
+        "wires": [
+            [
+                "f46885d693a57981"
+            ]
+        ]
+    },
+    {
+        "id": "f46885d693a57981",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "SqrOut2",
+        "mode": "link",
+        "links": [
+            "3bea6a0143dadde5",
+            "5936296ebc61204e"
+        ],
+        "x": 735,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "957d81cd3e935953",
+        "type": "link in",
+        "z": "68ed32eb0b68066e",
+        "name": "SqrIn2",
+        "links": [
+            "4b02af929ffead6c",
+            "b18e0bc5f6cdd065"
+        ],
+        "x": 255,
+        "y": 1500,
+        "wires": [
+            [
+                "fb111a48ba93a50e"
+            ]
+        ]
+    },
+    {
+        "id": "17bc6e1488d0bb5c",
+        "type": "ui_text_input",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "label": "Frequency",
+        "tooltip": "",
+        "group": "10d9bc6013909aec",
+        "order": 11,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "e358d2f64c6e4fa6"
+            ]
+        ]
+    },
+    {
+        "id": "78ee9fce23c82bd9",
+        "type": "ui_text_input",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "label": "Frequency",
+        "tooltip": "",
+        "group": "10d9bc6013909aec",
+        "order": 12,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 490,
+        "y": 1040,
+        "wires": [
+            [
+                "896e792e2fcef4c3"
+            ]
+        ]
+    },
+    {
+        "id": "848bee70bd629827",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "Freq2",
+        "mode": "link",
+        "links": [
+            "8a71c5dbf9a71e38"
+        ],
+        "x": 735,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "677e88ce34ed29c4",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "Freq1",
+        "mode": "link",
+        "links": [
+            "8a71c5dbf9a71e38"
+        ],
+        "x": 755,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "8a71c5dbf9a71e38",
+        "type": "link in",
+        "z": "68ed32eb0b68066e",
+        "name": "Serial Out",
+        "links": [
+            "677e88ce34ed29c4",
+            "848bee70bd629827",
+            "36cb303645469096",
+            "0df660b1f72a3f06"
+        ],
+        "x": 235,
+        "y": 60,
+        "wires": [
+            [
+                "1b0bf9631e4e13f9"
+            ]
+        ]
+    },
+    {
+        "id": "896e792e2fcef4c3",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.payload = \"AT+FRQ2 \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1040,
+        "wires": [
+            [
+                "848bee70bd629827"
+            ]
+        ]
+    },
+    {
+        "id": "e358d2f64c6e4fa6",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.payload = \"AT+FRQ1 \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 380,
+        "wires": [
+            [
+                "677e88ce34ed29c4"
+            ]
+        ]
+    },
+    {
+        "id": "c9dd0cd8f3635b09",
+        "type": "ui_text_input",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "label": "Phase",
+        "tooltip": "",
+        "group": "10d9bc6013909aec",
+        "order": 14,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "663fecccc4d5415a"
+            ]
+        ]
+    },
+    {
+        "id": "36cb303645469096",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "Freq1",
+        "mode": "link",
+        "links": [
+            "8a71c5dbf9a71e38"
+        ],
+        "x": 755,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "663fecccc4d5415a",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.payload = \"AT+PHS1 \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 420,
+        "wires": [
+            [
+                "36cb303645469096"
+            ]
+        ]
+    },
+    {
+        "id": "cd6803944419815d",
+        "type": "ui_text_input",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "label": "Phase",
+        "tooltip": "",
+        "group": "10d9bc6013909aec",
+        "order": 13,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 470,
+        "y": 1080,
+        "wires": [
+            [
+                "52ea8f68ac15710e"
+            ]
+        ]
+    },
+    {
+        "id": "0df660b1f72a3f06",
+        "type": "link out",
+        "z": "68ed32eb0b68066e",
+        "name": "Freq2",
+        "mode": "link",
+        "links": [
+            "8a71c5dbf9a71e38"
+        ],
+        "x": 735,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "52ea8f68ac15710e",
+        "type": "function",
+        "z": "68ed32eb0b68066e",
+        "name": "",
+        "func": "msg.payload = \"AT+PHS2 \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1080,
+        "wires": [
+            [
+                "0df660b1f72a3f06"
+            ]
+        ]
+    },
+    {
+        "id": "10d9bc6013909aec",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "2b68d2a26893050f",
+        "order": 1,
+        "disp": false,
+        "width": 18,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2b68d2a26893050f",
+        "type": "ui_tab",
+        "name": "Signal Generator",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
